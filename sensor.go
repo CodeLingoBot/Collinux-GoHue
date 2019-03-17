@@ -58,7 +58,7 @@ type Sensor struct {
 	Bridge           *Bridge // Set by the bridge when the sensor is found
 }
 
-/// Refresh sensor attributes
+//Refresh sensor attributes
 func (s *Sensor) Refresh() error {
 	sensor, err := s.Bridge.GetSensorByIndex(s.Index)
 	if err != nil {
