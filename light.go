@@ -133,7 +133,10 @@ func (light *Light) Blink(seconds int) error {
 
 	// Return the light to its original on or off state and brightness
 	if light.State.Bri != originalBrightness || light.State.On != originalPosition {
-		light.SetState(LightState{On: originalPosition, Bri: originalBrightness})
+		err := light.SetState(LightState{On: originalPosition, Bri: originalBrightness})
+	if err != nil {
+		panic(err.Error())
+	}
 	}
 	return nil
 }
@@ -177,7 +180,10 @@ func (light *Light) SetColor(color *[2]float32) error {
 // color variable section and sets the light to that XY HSL color
 // aliased for clarity
 func (light *Light) SetColorXY(color *[2]float32) {
-	light.SetColor(color)
+	err := light.SetColor(color)
+	if err != nil {
+		panic(err.Error())
+	}
 }
 
 // SetColorHS requires a selection from the above light
